@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import categoryAPI from "../Api/categoryAPI";
 import isEmpty from "validator/lib/isEmpty";
 import productAPI from "../Api/productAPI";
+import axiosClient from "../Api/axiosClient";
 
 function CreateProduct(props) {
   const [category, setCategory] = useState([]);
@@ -82,16 +83,20 @@ function CreateProduct(props) {
   const addProduct = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("fileName", fileName);
-    formData.append("name", name);
-    formData.append("price", price);
-    formData.append("category", categoryChoose);
-    // formData.append("number", number)
-    formData.append("description", description);
-    formData.append("gender", genderChoose);
 
-    const response = await productAPI.create(formData);
-
+    const result = await axiosClient.post(
+      "uploads/cloudinary-upload",
+      formData
+    );
+    const data = {
+      name,
+      price,
+      category: categoryChoose,
+      description,
+      gender: genderChoose,
+      file: result?.secure_url || ""
+    };
+    const response = await productAPI.create(data);
     if (response.msg === "Bạn đã thêm thành công") {
       setName("");
       setPrice("");

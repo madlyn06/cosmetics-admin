@@ -1,17 +1,19 @@
-// api/axiosClient.js
 import axios from "axios";
 import queryString from "query-string";
-// Set up default config for http requests here
-// Please have a look at here `https://github.com/axios/axios#requestconfig` for the full list of configs
+
+const env = "prod";
+const baseURL =
+  env === "dev"
+    ? "http://localhost:8000/api"
+    : "https://cosmetics-be.onrender.com/api";
 const axiosClient = axios.create({
-  baseURL: "https://cosmetics-be.onrender.com/api",
+  baseURL: baseURL,
   headers: {
     "content-type": "application/json"
   },
   paramsSerializer: (params) => queryString.stringify(params)
 });
 axiosClient.interceptors.request.use(async (config) => {
-  // Handle token here ...
   return config;
 });
 axiosClient.interceptors.response.use(
