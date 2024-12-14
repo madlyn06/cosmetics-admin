@@ -7,13 +7,26 @@ import axiosClient from "../Api/axiosClient";
 
 function CreateProduct(props) {
   const [category, setCategory] = useState([]);
-  const [gender] = useState(["Unisex", "Male", "Female"]);
+  const [gender] = useState([
+    {
+      label: "Dưỡng da",
+      value: "1"
+    },
+    {
+      label: "Trang điểm mắt môi",
+      value: "2"
+    },
+    {
+      label: "Làm sạch",
+      value: "3"
+    }
+  ]);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [number, setNumber] = useState("");
   const [categoryChoose, setCategoryChoose] = useState("");
-  const [genderChoose, setGenderChoose] = useState("Unisex");
+  const [genderChoose, setGenderChoose] = useState("1");
   const [file, setFile] = useState();
   const [fileName, setFileName] = useState("");
   const [validationMsg, setValidationMsg] = useState("");
@@ -103,7 +116,7 @@ function CreateProduct(props) {
       setDescription("");
       // setNumber('')
       setCategoryChoose("");
-      setGenderChoose("Unisex");
+      setGenderChoose("1");
       setFile("");
       setFileName("");
       window.scrollTo(0, 0);
@@ -214,17 +227,24 @@ function CreateProduct(props) {
                     </p>
                   </div>
 
-                  {/* <div className="form-group w-50">
-                                        <label htmlFor="gender" className="mr-2">Chọn giới tính:</label>
-                                        <select name="gender" id="gender" value={genderChoose} onChange={(e) => setGenderChoose(e.target.value)}>
-                                            {
-                                                gender && gender.map((item, index) => (
-                                                    <option value={item} key={index}>{item}</option>
-                                                ))
-                                            }
-
-                                        </select>
-                                    </div> */}
+                  <div className="form-group w-50">
+                    <label htmlFor="gender" className="mr-2">
+                      Chọn ABC
+                    </label>
+                    <select
+                      name="gender"
+                      id="gender"
+                      value={genderChoose}
+                      onChange={(e) => setGenderChoose(e.target.value)}
+                    >
+                      {gender &&
+                        gender.map((item, index) => (
+                          <option value={item.value} key={index}>
+                            {item.value}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
 
                   <div className="form-group w-50">
                     <label>Hình Ảnh</label>

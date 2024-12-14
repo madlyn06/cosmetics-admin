@@ -7,13 +7,26 @@ import productAPI from "../Api/productAPI";
 function UpdateProduct(props) {
   const [id] = useState(props.match.params.id);
   const [category, setCategory] = useState([]);
-  const [gender] = useState(["Unisex", "Male", "Female"]);
+  const [gender] = useState([
+    {
+      label: "Dưỡng da",
+      value: "1"
+    },
+    {
+      label: "Trang điểm mắt môi",
+      value: "2"
+    },
+    {
+      label: "Làm sạch",
+      value: "3"
+    }
+  ]);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [number, setNumber] = useState("");
   const [categoryChoose, setCategoryChoose] = useState("");
-  const [genderChoose, setGenderChoose] = useState("Unisex");
+  const [genderChoose, setGenderChoose] = useState("1");
   const [file, setFile] = useState();
   const [image, setImage] = useState();
   const [fileName, setFileName] = useState("");

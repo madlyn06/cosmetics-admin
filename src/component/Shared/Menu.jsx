@@ -81,18 +81,18 @@ function Menu() {
                 </li>
 
                 <li className="sidebar-item">
-                  {" "}
                   <a
                     className="sidebar-link has-arrow"
                     href="#"
                     aria-expanded="false"
                   >
                     <i data-feather="grid" className="feather-icon"></i>
-                    <span className="hide-menu">Tables </span>
+                    <span className="hide-menu">Tables</span>
                   </a>
                   <ul
                     aria-expanded="false"
-                    className="collapse  first-level base-level-line"
+                    className="collapse first-level base-level-line overflow-auto"
+                    style={{ maxHeight: "400px" }}
                   >
                     {menu &&
                       menu.map((item, index) => (
