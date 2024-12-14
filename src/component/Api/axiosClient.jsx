@@ -1,7 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const env = "prod";
+const env = "dev";
 const baseURL =
   env === "dev"
     ? "http://localhost:8000/api"

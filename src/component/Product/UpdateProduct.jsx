@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import categoryAPI from "../Api/categoryAPI";
 import isEmpty from "validator/lib/isEmpty";
 import productAPI from "../Api/productAPI";
+import axiosClient from "../Api/axiosClient";
+import { useHistory } from "react-router-dom";
 
 function UpdateProduct(props) {
   const [id] = useState(props.match.params.id);
@@ -32,7 +34,7 @@ function UpdateProduct(props) {
   const [fileName, setFileName] = useState("");
   const [validationMsg, setValidationMsg] = useState("");
   const { handleSubmit } = useForm();
-
+  let history = useHistory();
   useEffect(() => {
     const fetchAllData = async () => {
       const ct = await categoryAPI.getAPI();
@@ -97,18 +99,25 @@ function UpdateProduct(props) {
   };
 
   const addProduct = async () => {
-    const formData = new FormData();
-    formData.append("id", id);
-    formData.append("file", file);
-    formData.append("fileName", fileName);
-    formData.append("name", name);
-    formData.append("price", price);
-    formData.append("category", categoryChoose);
-    // formData.append("number", number)
-    formData.append("description", description);
-    formData.append("gender", genderChoose);
+    let result;
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      result = await axiosClient.post("uploads/cloudinary-upload", formData);
+      setImage(result?.secure_url);
+    }
 
-    const response = await productAPI.update(formData);
+    const data = {
+      id,
+      name,
+      price,
+      category: categoryChoose,
+      description,
+      gender: genderChoose,
+      file: result?.secure_url || image
+    };
+
+    const response = await productAPI.update(data);
 
     if (response.msg === "Bạn đã update thành công") {
       window.scrollTo(0, 0);
@@ -198,7 +207,7 @@ function UpdateProduct(props) {
                   <div className="form-group w-50">
                     {/* <label htmlFor="categories" className="mr-2">Chọn loại:</label> */}
                     <label htmlFor="categories" className="mr-2">
-                      Chọn nhà sản xuất:
+                      Chọn loại sản phẩm:
                     </label>
                     <select
                       name="categories"
@@ -230,6 +239,24 @@ function UpdateProduct(props) {
 
                                         </select>
                                     </div> */}
+                  <div className="form-group w-50">
+                    <label htmlFor="gender" className="mr-2">
+                      Chọn dòng sản phẩm
+                    </label>
+                    <select
+                      name="gender"
+                      id="gender"
+                      value={genderChoose}
+                      onChange={(e) => setGenderChoose(e.target.value)}
+                    >
+                      {gender &&
+                        gender.map((item, index) => (
+                          <option value={item.value} key={index}>
+                            {item.label}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
 
                   <div className="form-group w-50">
                     <label>Hình Ảnh</label>
@@ -242,7 +269,7 @@ function UpdateProduct(props) {
                   </div>
 
                   <div className="form-group w-50">
-                    <label>Hình Ảnh Cũ</label>
+                    <label>Hình Ảnh</label>
                     <img src={image} alt="" style={{ width: "70px" }} />
                   </div>
 

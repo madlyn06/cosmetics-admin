@@ -206,7 +206,7 @@ function CreateProduct(props) {
                   <div className="form-group w-50">
                     {/* <label htmlFor="categories" className="mr-2">Chọn loại:</label> */}
                     <label htmlFor="categories" className="mr-2">
-                      Chọn nhà sản xuất:
+                      Chọn loại sản phẩm:
                     </label>
                     <select
                       name="categories"
@@ -229,7 +229,7 @@ function CreateProduct(props) {
 
                   <div className="form-group w-50">
                     <label htmlFor="gender" className="mr-2">
-                      Chọn ABC
+                      Chọn dòng sản phẩm
                     </label>
                     <select
                       name="gender"
@@ -240,7 +240,7 @@ function CreateProduct(props) {
                       {gender &&
                         gender.map((item, index) => (
                           <option value={item.value} key={index}>
-                            {item.value}
+                            {item.label}
                           </option>
                         ))}
                     </select>
