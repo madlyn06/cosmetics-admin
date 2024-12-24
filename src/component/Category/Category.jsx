@@ -95,13 +95,13 @@ function Category(props) {
                                   to={"/category/" + value.category}
                                   className="btn btn-info mr-1"
                                 >
-                                  Detail
+                                  Chi tiết
                                 </Link>
                                 <Link
                                   to={"/category/update/" + value._id}
                                   className="btn btn-success mr-1"
                                 >
-                                  Update
+                                  Cập nhật
                                 </Link>
                                 {/* <Link to={"/producer/" + value.category} className="btn btn-info mr-1">Detail</Link>
                                                                 <Link to={"/producer/update/" + value._id} className="btn btn-success mr-1">Update</Link> */}
@@ -112,7 +112,7 @@ function Category(props) {
                                   style={{ cursor: "pointer", color: "white" }}
                                   className="btn btn-danger"
                                 >
-                                  Delete
+                                  Xóa
                                 </button>
                               </div>
                             </td>

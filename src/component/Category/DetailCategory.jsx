@@ -87,7 +87,7 @@ function DetailCategory(props) {
                                   to={"/product/update/" + value._id}
                                   className="btn btn-success mr-1"
                                 >
-                                  Update
+                                  Cập nhật
                                 </Link>
                               </div>
                             </td>

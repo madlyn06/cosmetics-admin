@@ -88,7 +88,7 @@ function UpdateCategory(props) {
                   </div>
 
                   <button type="submit" className="btn btn-primary">
-                    Update
+                    Cập nhật
                   </button>
                 </form>
               </div>

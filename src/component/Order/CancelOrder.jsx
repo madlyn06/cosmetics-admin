@@ -111,7 +111,7 @@ function CancelOrder(props) {
                                   to={"/order/detail/" + value._id}
                                   className="btn btn-info mr-1"
                                 >
-                                  Detail
+                                  Chi tiết
                                 </Link>
                               </div>
                             </td>

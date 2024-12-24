@@ -93,7 +93,7 @@ function Permission(props) {
                                   to={"/permission/update/" + value._id}
                                   className="btn btn-success mr-1"
                                 >
-                                  Update
+                                  Cập nhật
                                 </Link>
 
                                 <button
@@ -102,7 +102,7 @@ function Permission(props) {
                                   style={{ cursor: "pointer", color: "white" }}
                                   className="btn btn-danger"
                                 >
-                                  Delete
+                                  Xóa
                                 </button>
                               </div>
                             </td>

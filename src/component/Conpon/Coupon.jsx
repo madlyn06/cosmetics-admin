@@ -93,7 +93,7 @@ function Coupon(props) {
                                   to={"/coupon/" + value._id}
                                   className="btn btn-success mr-1"
                                 >
-                                  Update
+                                  Cập nhật
                                 </Link>
 
                                 <button
@@ -102,7 +102,7 @@ function Coupon(props) {
                                   onClick={() => handleDelete(value._id)}
                                   className="btn btn-danger"
                                 >
-                                  Delete
+                                  Xóa
                                 </button>
                               </div>
                             </td>

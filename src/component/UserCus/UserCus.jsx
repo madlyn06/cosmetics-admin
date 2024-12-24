@@ -97,7 +97,7 @@ function UserCus(props) {
                                   to={"user/update/" + value._id}
                                   className="btn btn-success mr-1"
                                 >
-                                  Update
+                                  Cập nhật
                                 </Link>
 
                                 <button
@@ -106,7 +106,7 @@ function UserCus(props) {
                                   onClick={() => handleDelete(value)}
                                   className="btn btn-danger"
                                 >
-                                  Delete
+                                  Xóa
                                 </button>
                               </div>
                             </td>
