@@ -4,55 +4,68 @@ import { AuthContext } from "../context/Auth";
 
 const menu = [
   {
-    item: "Customer",
+    item: "Khách hàng",
+    link: "/customer",
     permission: "Nhân Viên"
   },
   {
-    item: "Coupon",
+    item: "Mã giảm giá",
+    link: "/coupon",
     permission: "Nhân Viên"
   },
   {
-    item: "Product",
+    item: "Sản phẩm",
+    link: "/product",
     permission: "Nhân Viên"
   },
   {
-    item: "Sale",
+    item: "Giảm giá",
+    link: "/sale",
     permission: "Nhân Viên"
   },
   {
-    item: "Category",
+    item: "Danh mục sản phẩm",
+    link: "/category",
     permission: "Nhân Viên"
   },
   {
-    item: "Order",
+    item: "Đơn hàng",
+    link: "/order",
     permission: "Nhân Viên"
   },
   {
-    item: "ConfirmOrder",
+    item: "Xác nhận đơn hàng",
+    link: "/confirmorder",
     permission: "Nhân Viên"
   },
   {
-    item: "Delivery",
+    item: "Vận chuyển",
+    link: "/delivery",
     permission: "Nhân Viên"
   },
   {
-    item: "ConfirmDelivery",
+    item: "Xác nhận vận chuyển",
+    link: "/confirmdelivery",
     permission: "Nhân Viên"
   },
   {
-    item: "CompletedOrder",
+    item: "Hoàn thành đơn hàng",
+    link: "/completedorder",
     permission: "Nhân Viên"
   },
   {
-    item: "CancelOrder",
+    item: "Hủy đơn hàng",
+    link: "/cancelorder",
     permission: "Nhân Viên"
   },
   {
-    item: "User",
+    item: "Nhân viên",
+    link: "/user",
     permission: "Admin"
   },
   {
-    item: "Permission",
+    item: "Quản lý quyền",
+    link: "/permission",
     permission: "Admin"
   }
   // "Category", ,
@@ -77,7 +90,7 @@ function Menu() {
                 <li className="list-divider"></li>
 
                 <li className="nav-small-cap">
-                  <span className="hide-menu">Components</span>
+                  <span className="hide-menu">Danh mục</span>
                 </li>
 
                 <li className="sidebar-item">
@@ -87,7 +100,7 @@ function Menu() {
                     aria-expanded="false"
                   >
                     <i data-feather="grid" className="feather-icon"></i>
-                    <span className="hide-menu">Tables</span>
+                    <span className="hide-menu">Danh mục chính</span>
                   </a>
                   <ul
                     aria-expanded="false"
@@ -98,10 +111,7 @@ function Menu() {
                       menu.map((item, index) => (
                         <li className="sidebar-item active" key={index}>
                           {item.permission === user.id_permission.permission ? (
-                            <NavLink
-                              to={"/" + item.item.toLowerCase()}
-                              className="sidebar-link"
-                            >
+                            <NavLink to={item.link} className="sidebar-link">
                               {item.item}
                             </NavLink>
                           ) : (

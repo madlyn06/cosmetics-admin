@@ -6,6 +6,8 @@ import categoryApi from "../Api/categoryAPI";
 
 function CreateCategory(props) {
   const [name, setName] = useState("");
+  const [category] = useState(["Dưỡng da", "Trang điểm mắt môi", "Làm sạch"]);
+  const [categoryChoose, setCategoryChoose] = useState("");
   const [validationMsg, setValidationMsg] = useState("");
   const { handleSubmit } = useForm();
 
@@ -14,7 +16,9 @@ function CreateCategory(props) {
     if (isEmpty(name)) {
       msg.name = "Tên không được để trống";
     }
-
+    if (!categoryChoose) {
+      msg.category = "Loại sản phẩm không được để trống";
+    }
     setValidationMsg(msg);
     if (Object.keys(msg).length > 0) return false;
     return true;
@@ -27,7 +31,8 @@ function CreateCategory(props) {
   };
 
   const addCategory = async () => {
-    const query = "?" + queryString.stringify({ name: name });
+    const query =
+      "?" + queryString.stringify({ name: name, gender: categoryChoose });
     const response = await categoryApi.create(query);
     if (response.msg === "Bạn đã thêm thành công") {
       setName("");
@@ -78,6 +83,30 @@ function CreateCategory(props) {
                     />
                     <p className="form-text text-danger">
                       {validationMsg.name}
+                    </p>
+                  </div>
+
+                  <div className="form-group w-50">
+                    {/* <label htmlFor="categories" className="mr-2">Chọn loại:</label> */}
+                    <label htmlFor="categories" className="mr-2">
+                      Chọn loại sản phẩm:
+                    </label>
+                    <select
+                      name="categories"
+                      id="categories"
+                      value={categoryChoose}
+                      onChange={(e) => setCategoryChoose(e.target.value)}
+                    >
+                      <option>Chọn loại</option>
+                      {category &&
+                        category.map((item, index) => (
+                          <option value={index + 1} key={index}>
+                            {item}
+                          </option>
+                        ))}
+                    </select>
+                    <p className="form-text text-danger">
+                      {validationMsg.category}
                     </p>
                   </div>
 

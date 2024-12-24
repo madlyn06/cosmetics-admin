@@ -93,7 +93,6 @@ function DetailOrder(props) {
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Size</th>
                         <th>Count</th>
                         <th>Total Money</th>
                       </tr>
@@ -117,7 +116,6 @@ function DetailOrder(props) {
                                 decimal: "VND"
                               }).format(value.price_product) + " VNĐ"}
                             </td>
-                            <td className="name">{value.size}</td>
                             <td className="name">{value.count}</td>
                             <td className="name">
                               {new Intl.NumberFormat("vi-VN", {

@@ -293,6 +293,9 @@ function CompletedOrder(props) {
                     <option value="null">Năm</option>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
+                    <option value="2021">2022</option>
+                    <option value="2021">2023</option>
+                    <option value="2021">2024</option>
                   </select>
                   &nbsp;
                   <input

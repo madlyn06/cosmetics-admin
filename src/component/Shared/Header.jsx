@@ -61,7 +61,8 @@ function Header(props) {
                     aria-expanded="false"
                   >
                     <span className="ml-2 text-dark d-none d-lg-inline-block">
-                      <span>Hello,</span> <span>{user && user.fullname}</span>
+                      <span>Xin chào,</span>{" "}
+                      <span>{user && user.fullname}</span>
                       <i data-feather="chevron-down" className="svg-icon"></i>
                     </span>
                   </a>
@@ -76,7 +77,7 @@ function Header(props) {
                         data-feather="power"
                         className="svg-icon mr-2 ml-1 text-dark"
                       ></i>
-                      Logout
+                      Đăng xuất
                     </button>
                   </div>
                 </li>
