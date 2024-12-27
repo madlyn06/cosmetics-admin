@@ -58,11 +58,11 @@ function Coupon(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Coupons</h4>
+                <h4 className="card-title">Mã giảm giá</h4>
                 <Search handlerSearch={handlerSearch} />
 
                 <Link to="/coupon/create" className="btn btn-primary my-3">
-                  New create
+                  Thêm mới
                 </Link>
 
                 <div className="table-responsive">
@@ -70,11 +70,11 @@ function Coupon(props) {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Code</th>
-                        <th>Count</th>
-                        <th>Promotion</th>
-                        <th>Describe</th>
-                        <th>Edit</th>
+                        <th>Mã giảm giá</th>
+                        <th>Số lượng</th>
+                        <th>Tỷ lệ giảm giá</th>
+                        <th>Mô tả</th>
+                        <th>Hành động</th>
                       </tr>
                     </thead>
 

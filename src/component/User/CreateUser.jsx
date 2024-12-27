@@ -95,7 +95,7 @@ function CreateUser(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Create User</h4>
+                <h4 className="card-title">Thêm người dùng</h4>
                 {validationMsg.api === "Bạn đã thêm thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -117,7 +117,7 @@ function CreateUser(props) {
 
                 <form onSubmit={handleSubmit(handleCreate)}>
                   <div className="form-group w-50">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">Tên người dùng:</label>
                     <input
                       type="text"
                       className="form-control"
@@ -165,7 +165,7 @@ function CreateUser(props) {
                   </div>
 
                   <div className="form-group w-50">
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Mật khẩu:</label>
                     <input
                       type="password"
                       className="form-control"
@@ -203,7 +203,7 @@ function CreateUser(props) {
                     </p>
                   </div>
                   <button type="submit" className="btn btn-primary">
-                    Create
+                    Thêm người dùng
                   </button>
                 </form>
               </div>

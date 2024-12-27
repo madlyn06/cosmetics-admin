@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import categoryAPI from "../Api/categoryAPI";
 import isEmpty from "validator/lib/isEmpty";
@@ -31,6 +31,7 @@ function CreateProduct(props) {
   const [fileName, setFileName] = useState("");
   const [validationMsg, setValidationMsg] = useState("");
   const { handleSubmit } = useForm();
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -73,11 +74,9 @@ function CreateProduct(props) {
     if (isEmpty(description)) {
       msg.description = "Mô tả không được để trống";
     }
-    // if (isEmpty(number)) {
-    //     msg.number = "Số lượng không được để trống"
-    // } else if (!priceRegex.test(number)) {
-    //     msg.number = "Số lượng sai định dạng"
-    // }
+    if (isEmpty(number)) {
+      msg.number = "Số lượng không được để trống";
+    }
     if (isEmpty(categoryChoose)) {
       msg.category = "Vui lòng chọn loại";
     }
@@ -104,6 +103,7 @@ function CreateProduct(props) {
     const data = {
       name,
       price,
+      number,
       category: categoryChoose,
       description,
       gender: genderChoose,
@@ -114,11 +114,14 @@ function CreateProduct(props) {
       setName("");
       setPrice("");
       setDescription("");
-      // setNumber('')
+      setNumber("");
       setCategoryChoose("");
       setGenderChoose("1");
       setFile("");
       setFileName("");
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // Reset file input
+      }
       window.scrollTo(0, 0);
     }
     setValidationMsg({ api: response.msg });
@@ -131,7 +134,7 @@ function CreateProduct(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Create Product</h4>
+                <h4 className="card-title">Thêm sản phẩm</h4>
                 {validationMsg.api === "Bạn đã thêm thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -153,7 +156,7 @@ function CreateProduct(props) {
 
                 <form onSubmit={handleSubmit(handleCreate)}>
                   <div className="form-group w-50">
-                    <label htmlFor="name">Tên Sản Phẩm</label>
+                    <label htmlFor="name">Tên sản phẩm</label>
                     <input
                       type="text"
                       className="form-control"
@@ -168,7 +171,7 @@ function CreateProduct(props) {
                     </p>
                   </div>
                   <div className="form-group w-50">
-                    <label htmlFor="price">Giá Sản Phẩm</label>
+                    <label htmlFor="price">Giá sản phẩm</label>
                     <input
                       type="text"
                       className="form-control"
@@ -197,11 +200,21 @@ function CreateProduct(props) {
                       {validationMsg.description}
                     </p>
                   </div>
-                  {/* <div className="form-group w-50">
-                                        <label htmlFor="number">Số lượng: </label>
-                                        <input type="number" className="form-control" id="number" name="number" value={number} onChange={(e) => onChangeNumber(e)} required />
-                                        <p className="form-text text-danger">{validationMsg.number}</p>
-                                    </div> */}
+                  <div className="form-group w-50">
+                    <label htmlFor="number">Số lượng: </label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="number"
+                      name="number"
+                      value={number}
+                      onChange={(e) => onChangeNumber(e)}
+                      required
+                    />
+                    <p className="form-text text-danger">
+                      {validationMsg.number}
+                    </p>
+                  </div>
 
                   <div className="form-group w-50">
                     {/* <label htmlFor="categories" className="mr-2">Chọn loại:</label> */}
@@ -253,11 +266,12 @@ function CreateProduct(props) {
                       className="form-control-file"
                       name="file"
                       onChange={saveFile}
+                      ref={fileInputRef}
                     />
                   </div>
 
                   <button type="submit" className="btn btn-primary">
-                    Create Product
+                    Thêm sản phẩm
                   </button>
                 </form>
               </div>

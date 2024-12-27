@@ -49,7 +49,7 @@ function UpdateCategory(props) {
             <div className="card">
               <div className="card-body">
                 {/* <h4 className="card-title">Update Category</h4> */}
-                <h4 className="card-title">Update Producer</h4>
+                <h4 className="card-title">Cập nhật danh mục</h4>
                 {validationMsg.api === "Bạn đã update thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"

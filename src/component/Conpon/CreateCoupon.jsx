@@ -40,7 +40,7 @@ function CreateCoupon(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Create Product</h4>
+                <h4 className="card-title">Thêm mã giảm giá</h4>
                 {showMessage === "Bạn đã thêm thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -62,7 +62,7 @@ function CreateCoupon(props) {
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="form-group w-50">
-                    <label htmlFor="name">Mã Code</label>
+                    <label htmlFor="name">Mã giảm giá</label>
                     <input
                       type="text"
                       className="form-control"
@@ -71,7 +71,7 @@ function CreateCoupon(props) {
                     />
                     {errors.code && errors.code.type === "required" && (
                       <p className="form-text text-danger">
-                        Mã Code không được để trống
+                        Mã giảm giá không được để trống
                       </p>
                     )}
                   </div>
@@ -119,7 +119,7 @@ function CreateCoupon(props) {
                     )}
                   </div>
                   <button type="submit" className="btn btn-primary">
-                    Create Coupon
+                    Thêm mã giảm giá
                   </button>
                 </form>
               </div>

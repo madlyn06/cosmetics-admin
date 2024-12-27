@@ -166,7 +166,7 @@ function CompletedOrder(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Complete Order</h4>
+                <h4 className="card-title">Đơn hàng đã hoàn thành</h4>
                 <div className="table-responsive mt-3" id="customers">
                   <table
                     className="table table-striped table-bordered no-wrap"
@@ -175,14 +175,14 @@ function CompletedOrder(props) {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Tên người nhận</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                        <th>Payment</th>
-                        <th>Action</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Trạng thái</th>
+                        <th>Tổng tiền</th>
+                        <th>Phương thức thanh toán</th>
+                        <th>Hành động</th>
                       </tr>
                     </thead>
 
@@ -237,7 +237,7 @@ function CompletedOrder(props) {
                     </tbody>
                   </table>
                   <h4 className="card-title">
-                    Total Money:{" "}
+                    Tổng tiền:{" "}
                     {new Intl.NumberFormat("vi-VN", {
                       style: "decimal",
                       decimal: "VND"
@@ -293,9 +293,9 @@ function CompletedOrder(props) {
                     <option value="null">Năm</option>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
-                    <option value="2021">2022</option>
-                    <option value="2021">2023</option>
-                    <option value="2021">2024</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
                   </select>
                   &nbsp;
                   <input

@@ -63,7 +63,7 @@ function CreateSale(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Create Product</h4>
+                <h4 className="card-title">Thêm sản phẩm giảm giá</h4>
                 {showMessage === "Bạn đã thêm thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -147,7 +147,7 @@ function CreateSale(props) {
                   </div>
 
                   <button type="submit" className="btn btn-primary">
-                    Create Sale
+                    Thêm
                   </button>
                 </form>
               </div>

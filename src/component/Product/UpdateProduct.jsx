@@ -80,9 +80,9 @@ function UpdateProduct(props) {
     if (isEmpty(description)) {
       msg.description = "Mô tả không được để trống";
     }
-    // if (isEmpty(number.toString())) {
-    //     msg.number = "Số lượng không được để trống"
-    // }
+    if (isEmpty(number.toString())) {
+      msg.number = "Số lượng không được để trống";
+    }
     if (isEmpty(categoryChoose)) {
       msg.category = "Vui lòng chọn loại";
     }
@@ -111,6 +111,7 @@ function UpdateProduct(props) {
       id,
       name,
       price,
+      number,
       category: categoryChoose,
       description,
       gender: genderChoose,
@@ -132,7 +133,7 @@ function UpdateProduct(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Update Product</h4>
+                <h4 className="card-title">Cập nhật sản phẩm</h4>
                 {validationMsg.api === "Bạn đã thêm thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -198,11 +199,21 @@ function UpdateProduct(props) {
                       {validationMsg.description}
                     </p>
                   </div>
-                  {/* <div className="form-group w-50">
-                                        <label htmlFor="number">Số lượng: </label>
-                                        <input type="text" className="form-control" id="number" name="number" value={number} onChange={(e) => onChangeNumber(e)} required />
-                                        <p className="form-text text-danger">{validationMsg.number}</p>
-                                    </div> */}
+                  <div className="form-group w-50">
+                    <label htmlFor="number">Số lượng: </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="number"
+                      name="number"
+                      value={number}
+                      onChange={(e) => onChangeNumber(e)}
+                      required
+                    />
+                    <p className="form-text text-danger">
+                      {validationMsg.number}
+                    </p>
+                  </div>
 
                   <div className="form-group w-50">
                     {/* <label htmlFor="categories" className="mr-2">Chọn loại:</label> */}
@@ -228,17 +239,6 @@ function UpdateProduct(props) {
                     </p>
                   </div>
 
-                  {/* <div className="form-group w-50">
-                                        <label htmlFor="gender" className="mr-2">Chọn giới tính:</label>
-                                        <select name="gender" id="gender" value={genderChoose} onChange={(e) => setGenderChoose(e.target.value)}>
-                                            {
-                                                gender && gender.map((item, index) => (
-                                                    <option value={item} key={index}>{item}</option>
-                                                ))
-                                            }
-
-                                        </select>
-                                    </div> */}
                   <div className="form-group w-50">
                     <label htmlFor="gender" className="mr-2">
                       Chọn dòng sản phẩm
@@ -274,7 +274,7 @@ function UpdateProduct(props) {
                   </div>
 
                   <button type="submit" className="btn btn-primary">
-                    Update Product
+                    Cập nhật sản phẩm
                   </button>
                 </form>
               </div>

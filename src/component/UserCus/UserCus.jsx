@@ -76,10 +76,10 @@ function UserCus(props) {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Tên người dùng</th>
                         <th>Email</th>
-                        <th>Permission</th>
-                        <th>Action</th>
+                        <th>Quyền</th>
+                        <th>Hành động</th>
                       </tr>
                     </thead>
 

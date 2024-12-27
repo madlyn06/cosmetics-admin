@@ -66,11 +66,11 @@ function Product() {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Products</h4>
+                <h4 className="card-title">Sản phẩm</h4>
                 <Search handlerSearch={handlerSearch} />
 
                 <Link to="/product/create" className="btn btn-primary my-3">
-                  New create
+                  Thêm sản phẩm
                 </Link>
 
                 <div className="table-responsive">
@@ -78,13 +78,13 @@ function Product() {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Image</th>
-                        <th>Describe</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Hình ảnh</th>
+                        <th>Mô tả</th>
                         {/* <th>Producer</th> */}
-                        <th>Category</th>
-                        <th>Edit</th>
+                        <th>Danh mục</th>
+                        <th>Hành động</th>
                       </tr>
                     </thead>
 

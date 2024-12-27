@@ -69,21 +69,21 @@ function Delivery(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Delivery</h4>
+                <h4 className="card-title">Đơn hàng đang giao</h4>
 
                 <div className="table-responsive mt-3">
                   <table className="table table-striped table-bordered no-wrap">
                     <thead>
                       <tr>
-                        <th>Action</th>
+                        <th>Hành động</th>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Tên người nhận</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Status</th>
-                        <th>Total Money</th>
-                        <th>Payment</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Trạng thái</th>
+                        <th>Tổng tiền</th>
+                        <th>Phương thức thanh toán</th>
                       </tr>
                     </thead>
 

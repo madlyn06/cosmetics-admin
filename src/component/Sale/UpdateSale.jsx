@@ -64,7 +64,7 @@ function UpdateSale(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Update Product</h4>
+                <h4 className="card-title">Cập nhật sản phẩm giảm giá</h4>
                 {showMessage === "Bạn đã cập nhật thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -163,7 +163,7 @@ function UpdateSale(props) {
                   </div>
 
                   <button type="submit" className="btn btn-primary">
-                    Update Sale
+                    Cập nhật
                   </button>
                 </form>
               </div>

@@ -52,11 +52,11 @@ function Sale(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Sale</h4>
+                <h4 className="card-title">Các sản phẩm giảm giá</h4>
                 <Search handlerSearch={handlerSearch} />
 
                 <Link to="/sale/create" className="btn btn-primary my-3">
-                  New create
+                  Thêm sản phẩm giảm giá
                 </Link>
 
                 <div className="table-responsive">
@@ -64,12 +64,12 @@ function Sale(props) {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Promotion</th>
-                        <th>Describe</th>
-                        <th>Start</th>
-                        <th>End</th>
-                        <th>Status</th>
-                        <th>Edit</th>
+                        <th>Khuyến mãi</th>
+                        <th>Mô tả</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
                       </tr>
                     </thead>
 

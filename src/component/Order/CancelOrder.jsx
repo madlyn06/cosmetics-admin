@@ -54,8 +54,8 @@ function CancelOrder(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Cancel Order</h4>
-                <h4 className="card-title">TotalMoney: {totalMoney}$</h4>
+                <h4 className="card-title">Đơn hàng đã hủy</h4>
+                <h4 className="card-title">Tổng tiền: {totalMoney}$</h4>
                 <Search handlerSearch={handlerSearch} />
 
                 <div className="table-responsive mt-3">
@@ -63,14 +63,14 @@ function CancelOrder(props) {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Tên người nhận</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Status</th>
-                        <th>Total Money</th>
-                        <th>Payment</th>
-                        <th>Action</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Trạng thái</th>
+                        <th>Tổng tiền</th>
+                        <th>Phương thức thanh toán</th>
+                        <th>Hành động</th>
                       </tr>
                     </thead>
 

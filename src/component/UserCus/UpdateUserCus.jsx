@@ -72,7 +72,7 @@ function UpdateUserCus(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Update User</h4>
+                <h4 className="card-title">Cập nhật người dùng</h4>
                 {validationMsg.api === "Bạn đã update thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -94,7 +94,7 @@ function UpdateUserCus(props) {
 
                 <form onSubmit={handleSubmit(handleCreate)}>
                   <div className="form-group w-50">
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">Email123:</label>
                     <input
                       type="text"
                       className="form-control"

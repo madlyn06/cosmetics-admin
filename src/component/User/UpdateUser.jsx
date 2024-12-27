@@ -78,7 +78,7 @@ function UpdateUser(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Update User</h4>
+                <h4 className="card-title">Cập nhật người dùng</h4>
                 {validationMsg.api === "Bạn đã update thành công" ? (
                   <div
                     className="alert alert-success alert-dismissible fade show"
@@ -124,7 +124,7 @@ function UpdateUser(props) {
                   </div>
 
                   <div className="form-group w-50">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">Tên người dùng:</label>
                     <input
                       type="text"
                       className="form-control"
@@ -140,7 +140,7 @@ function UpdateUser(props) {
                   </div>
 
                   <div className="form-group w-50">
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Mật khẩu:</label>
                     <input
                       type="password"
                       className="form-control"

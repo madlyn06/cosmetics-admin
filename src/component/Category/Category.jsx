@@ -64,12 +64,12 @@ function Category(props) {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Category</h4>
+                <h4 className="card-title">Danh mục</h4>
                 {/* <h4 className="card-title">Producer</h4> */}
                 <Search handlerSearch={handlerSearch} />
 
                 <Link to="/category/create" className="btn btn-primary my-3">
-                  New create
+                  Thêm danh mục
                 </Link>
                 {/* <Link to="/producer/create" className="btn btn-primary my-3">New create</Link> */}
 
@@ -78,8 +78,8 @@ function Category(props) {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Action</th>
+                        <th>Tên danh mục</th>
+                        <th>Hành động</th>
                       </tr>
                     </thead>
 
