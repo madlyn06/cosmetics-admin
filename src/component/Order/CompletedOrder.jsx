@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
@@ -5,19 +6,54 @@ import queryString from "query-string";
 
 import orderAPI from "../Api/orderAPI";
 import Pagination from "../Shared/Pagination";
-import Search from "../Shared/Search";
-
+import DatePicker from "react-datepicker";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
+// import faker from "faker";
+import "react-datepicker/dist/react-datepicker.css";
+import Chart from "./Chart";
+import axiosClient from "../Api/axiosClient";
+import "./style.css";
 function CompletedOrder(props) {
+  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState({
+    plugins: {
+      title: {
+        display: true,
+        text: "Thông kê từ ngày 1/1/2024 đến ngày 1/1/2025"
+      }
+    },
+    responsive: true,
+    interaction: {
+      mode: "index",
+      intersect: false
+    },
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          display: false
+        }
+      },
+      y: {
+        stacked: true
+      }
+    }
+  });
   const [filter, setFilter] = useState({
     page: "1",
     limit: "10",
     getDate: ""
   });
+  const [dates, setDates] = useState({
+    start: new Date(),
+    end: new Date()
+  });
 
   const [order, setOrder] = useState([]);
   const [totalPage, setTotalPage] = useState();
   const [totalMoney, setTotalMoney] = useState();
-
+  const [data, setData] = useState([]);
   useEffect(() => {
     const query = "?" + queryString.stringify(filter);
 
@@ -66,97 +102,73 @@ function CompletedOrder(props) {
     win.print(); // PRINT THE CONTENTS.
   };
 
-  let day = [];
-  let month = [];
-
-  for (let i = 1; i < 32; i++) {
-    day.push(i);
-  }
-
-  for (let i = 1; i < 13; i++) {
-    month.push(i);
-  }
-
-  const [getDay, setGetDay] = useState("null");
-  const [getMonth, setGetMonth] = useState("null");
-  const [getYear, setGetYear] = useState("null");
-
   const [errMessage, setErrMessage] = useState("");
   const [subMessage, setSubMessage] = useState("");
 
-  const handlerStatistic = (e) => {
+  const handlerTopProduct = async (e) => {
+    const result = await axiosClient.get(`/admin/order/month`);
+    setOptions({
+      ...options,
+      plugins: {
+        title: {
+          display: true,
+          text: "Thống kê top 5 sản phẩm bán chạy"
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          stacked: true
+        }
+      }
+    });
+    const dataChart = {
+      labels: result.map((item) => item.name),
+      datasets: [
+        {
+          label: "Dataset 1",
+          data: result.map((item) => item.totalCount),
+          backgroundColor: "rgb(255, 99, 132)",
+          stack: "Stack 0"
+        }
+      ]
+    };
+    setData(dataChart);
+    setOpen(true);
+  };
+
+  const handlerStatistic = async (e) => {
     e.preventDefault();
-
-    // Check Validation
-
-    // Kiểm tra ngày tháng năm đều rỗng
-    if (getDay === "null" && getMonth === "null" && getYear === "null") {
-      setErrMessage("Vui lòng kiểm tra lại!");
-      setSubMessage("");
-      return;
-    }
-
-    // Kiểm tra chỉ tháng là rỗng
-    if (getDay !== "null" && getYear !== "null" && getMonth === "null") {
-      setErrMessage("Vui lòng kiểm tra lại!");
-      setSubMessage("");
-      return;
-    }
-
-    // Kiểm tra chỉ năm là rỗng
-    if (getDay !== "null" && getMonth !== "null" && getYear === "null") {
-      setErrMessage("Vui lòng kiểm tra lại!");
-      setSubMessage("");
-      return;
-    }
-
-    // Kiểm tra năm và tháng là rỗng
-    if (getDay !== "null" && getMonth === "null" && getYear === "null") {
-      setErrMessage("Vui lòng kiểm tra lại!");
-      setSubMessage("");
-      return;
-    }
-
-    // Kiểm tra ngày và năm là rỗng
-    if (getDay === "null" && getMonth !== "null" && getYear === "null") {
-      setErrMessage("Vui lòng kiểm tra lại!");
-      setSubMessage("");
-      return;
-    }
-    // Check Validation
-
-    //Xử lý thanh toán theo ngày
-    if (getDay !== "null" && getMonth !== "null" && getYear !== "null") {
-      setFilter({
-        ...filter,
-        getDate: `${getDay}/${getMonth}/${getYear}`
-      });
-
-      setSubMessage("Thống Kê Theo Ngày Thành Công!");
-      setErrMessage("");
-    }
-
-    // Xử lý thanh toán theo tháng
-    if (getDay === "null" && getMonth !== "null" && getYear !== "null") {
-      setFilter({
-        ...filter,
-        getDate: `/${getMonth}/${getYear}`
-      });
-
-      setSubMessage("Thống Kê Theo Tháng Thành Công!");
-      setErrMessage("");
-    }
-
-    //Xử lý thanh toán theo năm
-    if (getDay === "null" && getMonth === "null" && getYear !== "null") {
-      setFilter({
-        ...filter,
-        getDate: `/${getYear}`
-      });
-
-      setSubMessage("Thống Kê Năm Thành Công!");
-      setErrMessage("");
-    }
+    setOptions({
+      ...options,
+      plugins: {
+        title: {
+          display: true,
+          text: `Thông kê từ ${dates.start} đến ${dates.end}`
+        }
+      }
+    });
+    const result = await axiosClient.get(
+      `/admin/order/statistical?start=${dates.start}&end=${dates.end}`
+    );
+    const dataChart = {
+      labels: result.map((item) => item._id),
+      datasets: [
+        {
+          label: "Dataset 1",
+          data: result.map((item) => item.totalSum),
+          backgroundColor: "rgb(255, 99, 132)",
+          stack: "Stack 0"
+        }
+      ]
+    };
+    setData(dataChart);
+    setOpen(true);
   };
 
   return (
@@ -254,56 +266,36 @@ function CompletedOrder(props) {
                     <h4>Chọn phương thức thống kê</h4>
                   </div>
                   <br />
-                  <select
-                    className="custom-select"
-                    style={{ color: "gray", width: "85px" }}
-                    value={getDay}
-                    onChange={(e) => setGetDay(e.target.value)}
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <DatePicker
+                      dateFormat="dd/MM/yyyy"
+                      selected={dates.start}
+                      dropdownMode="select"
+                      onChange={(date) => setDates({ ...dates, start: date })}
+                    />
+                    <DatePicker
+                      dateFormat="dd/MM/yyyy"
+                      selected={dates.end}
+                      dropdownMode="select"
+                      onChange={(date) => setDates({ ...dates, end: date })}
+                    />
+                    <input
+                      type="submit"
+                      className="btn btn-primary"
+                      value="Lọc Hóa Đơn"
+                      onClick={handlerStatistic}
+                    />
+                  </div>
+                  <Modal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    center
+                    classNames={{
+                      modal: "customModal"
+                    }}
                   >
-                    <option value="null">Ngày</option>
-                    {day &&
-                      day.map((d) => (
-                        <option value={d} key={d}>
-                          {d}
-                        </option>
-                      ))}
-                  </select>
-                  &nbsp;/&nbsp;
-                  <select
-                    className="custom-select"
-                    style={{ color: "gray", width: "85px" }}
-                    value={getMonth}
-                    onChange={(e) => setGetMonth(e.target.value)}
-                  >
-                    <option value="null">Tháng</option>
-                    {month &&
-                      month.map((m) => (
-                        <option value={m} key={m}>
-                          {m}
-                        </option>
-                      ))}
-                  </select>
-                  &nbsp;/&nbsp;
-                  <select
-                    className="custom-select"
-                    style={{ color: "gray", width: "85px" }}
-                    value={getYear}
-                    onChange={(e) => setGetYear(e.target.value)}
-                  >
-                    <option value="null">Năm</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                  </select>
-                  &nbsp;
-                  <input
-                    type="submit"
-                    className="btn btn-primary"
-                    value="Lọc Hóa Đơn"
-                    onClick={handlerStatistic}
-                  />
+                    <Chart data={data} options={options} />
+                  </Modal>
                 </div>
                 <div>
                   {errMessage !== "" && (
@@ -312,6 +304,16 @@ function CompletedOrder(props) {
                   {subMessage !== "" && (
                     <span className="text-success">{subMessage}</span>
                   )}
+                </div>
+                <br />
+                <div
+                  className="btn btn-primary"
+                  style={{
+                    cursor: "pointer"
+                  }}
+                  onClick={handlerTopProduct}
+                >
+                  Thống kê top 5 sản phẩm bán chạy
                 </div>
                 <br />
                 <a
