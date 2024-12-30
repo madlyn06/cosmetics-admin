@@ -80,6 +80,7 @@ function Product() {
                         <th>ID</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
+                        <th>Số lượng</th>
                         <th>Hình ảnh</th>
                         <th>Mô tả</th>
                         {/* <th>Producer</th> */}
@@ -94,12 +95,14 @@ function Product() {
                           <tr key={index}>
                             <td className="name">{value._id}</td>
                             <td className="name">{value.name_product}</td>
+
                             <td>
                               {new Intl.NumberFormat("vi-VN", {
                                 style: "decimal",
                                 decimal: "VND"
                               }).format(value.price_product) + " VNĐ"}
                             </td>
+                            <td className="name">{value.amount}</td>
                             <td>
                               <img
                                 src={value.image}

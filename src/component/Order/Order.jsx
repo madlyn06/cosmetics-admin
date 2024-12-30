@@ -108,7 +108,12 @@ function Order(props) {
                                 }
                               })()}
                             </td>
-                            <td className="name">{value.total}</td>
+                            <td className="name">
+                              {new Intl.NumberFormat("vi-VN", {
+                                style: "decimal",
+                                decimal: "VND"
+                              }).format(value.total) + " VNĐ"}
+                            </td>
                             <td className="name">
                               {value.pay === true
                                 ? "Đã thanh toán"
