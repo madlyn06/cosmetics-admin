@@ -55,7 +55,13 @@ function CancelOrder(props) {
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">Đơn hàng đã hủy</h4>
-                <h4 className="card-title">Tổng tiền: {totalMoney}$</h4>
+                <h4 className="card-title">
+                  Tổng tiền:{" "}
+                  {new Intl.NumberFormat("vi-VN", {
+                    style: "decimal",
+                    decimal: "VND"
+                  }).format(totalMoney) + " VNĐ"}
+                </h4>
                 <Search handlerSearch={handlerSearch} />
 
                 <div className="table-responsive mt-3">
@@ -99,7 +105,12 @@ function CancelOrder(props) {
                                 }
                               })()}
                             </td>
-                            <td className="name">{value.total}</td>
+                            <td className="name">
+                              {new Intl.NumberFormat("vi-VN", {
+                                style: "decimal",
+                                decimal: "VND"
+                              }).format(value.total) + " VNĐ"}
+                            </td>
                             <td className="name">
                               {value.pay === true
                                 ? "Đã thanh toán"
